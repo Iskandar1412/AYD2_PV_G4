@@ -1,6 +1,6 @@
 <script>
-	import { navigate, Router, Route, Link } from "svelte-routing";
-	import { isAuthenticated, loginUser, logoutUser, user } from "../stores/auth";
+	import { navigate, Link } from "svelte-routing";
+	import { isAuthenticated, loginUser } from "../stores/auth";
 	import { onMount } from "svelte";
 
 	onMount(() => {
@@ -30,8 +30,9 @@
 	}
 
 	let usuariosquemados = $state([
-		{ no: 1254, id: 1, cui: '1111111111111', pass: '123', nombres: 'Jose pablo', apellidos: 'bats' },
-		{ no: 1255, id: 2, cui: '2222222222222', pass: '123', nombres: 'iskandar', apellidos: 'urs' }
+		{ no: 1254, id: 1, cui: '1111111111111', pass: '123', nombres: 'Jose pablo', apellidos: 'bats', rol: 3 },
+		{ no: 1255, id: 2, cui: '2222222222222', pass: '123', nombres: 'iskandar', apellidos: 'urs', rol: 1 },
+		{ no: 1255, id: 2, cui: '3333333333333', pass: '123', nombres: 'pau', apellidos: 'urs', rol: 2 },
 	])
 
 	function handleInput(event) {
