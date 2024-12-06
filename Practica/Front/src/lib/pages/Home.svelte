@@ -1,23 +1,21 @@
 <script>
 	import { onMount } from "svelte";
 	import SideBar from "./SideBar.svelte";
+	import { isAuthenticated, user } from "../stores/auth";
+	import { navigate, Route } from "svelte-routing";
+    
+    onMount(() => {
+        console.log($user.id)
+    })
 
-    let page;
-
-    function onRouteChange() {
-        const path = window.location.hash.slice(1)
-
-        if (path === '/') {
-            page = 'home'
-        } else if (path === '/creators') {
-            page = 'creators'
-        } else if (path === '/settings') {
-            page = 'settings'
+    $effect.pre(() => {
+        if($isAuthenticated) {
+            
         } else {
-            window.location.hash = '/';
+            navigate('/')
         }
-    }
-    onMount(onRouteChange);
+    })
+
 </script>
 
 <div class="h-screen w-full bg-white flex overflow-hidden">
@@ -26,16 +24,12 @@
     <!-- Main Content -->
     <div class="w-full h-full flex flex-col">
         <main class="flex-1 overflow-y-auto p-4">
-            {#if page === 'home'}
-                <h2>home</h2>
-            {:else if page === 'creators'}
-                <div class="w-full h-40 bg-gray-400 rounded-lg flex items-center justify-center">
-                    asdf
-                </div>
-                
-            {:else if page === 'settings'}
-                <h2>Settings</h2>
-            {/if}
+            <div class="w-full h-40 bg-gray-400 rounded-lg flex items-center justify-center">
+                asdf
+            </div>
+            <Route path='/home/dashboard'></Route>
+            <Route path='/home/settings'></Route>
+            <Route path='/home/creators'></Route>
         </main>
     </div>
 </div>

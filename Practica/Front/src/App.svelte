@@ -1,24 +1,23 @@
 <script>
-	import { Router, Route, Link, navigate } from "svelte-routing";
-    import { isAuthenticated, getUser } from "./lib/stores/auth";
-	import Login from "./lib/pages/Login.svelte";
-	import Register from "./lib/pages/Register.svelte";
+	import { Router, Route, navigate } from 'svelte-routing';
+	import { onMount } from 'svelte';
+	import Login from './lib/pages/Login.svelte';
+	import Home from './lib/pages/Home.svelte';
+	import Register from './lib/pages/Register.svelte';
+	import { isAuthenticated } from './lib/stores/auth';
 
-    let authenticated = false;
-    isAuthenticated.subscribe(value => {
-        authenticated = value
-    });
-
-    const protectedRoutes = () => {
-        if(!isAuthenticated || !getUser()) {
-            navigate('/');
+    onMount(() => {})    
+    $effect.pre(() => {     
+        if($isAuthenticated) {
+            navigate('/home')
+        } else {
+            navigate('/')
         }
-    };
+    })
 </script>
 
 <Router>
-
-    <Route path='/' component={Login} />
-    <!-- <Route path='/register' component={Register} /> -->
+    <Route path="/" ><Login /></Route>
+    <Route path="/register" ><Register /></Route>
+    <Route path="/home" ><Home /></Route>
 </Router>
-
