@@ -1,20 +1,19 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
-export const isAuthenticated = writable(false);
+const storedUser = JSON.parse(localStorage.getItem('user')) || null;
 
-export const login = (userData) => {
-    isAuthenticated.set(true)
-    localStorage.setItem('isAuthenticated', 'true');
-    localStorage.setItem('userData', JSON.stringify(userData))
+export const user = writable(storedUser);
+export const isAuthenticated = writable(storedUser !== null);
+
+export function loginUser(usuario) {
+    const userInfo = usuario;
+    localStorage.setItem('user', JSON.stringify(userInfo));
+    user.set(userInfo);
+    isAuthenticated.set(true);
 }
 
-export const logout = () => {
-    isAuthenticated.set(false)
-    localStorage.removeItem('isAuthenticated')
-    localStorage.removeItem('userData')
-}
-
-export const getUser = () => {
-    const userData = localStorage.getItem('userData')
-    return userData ? JSON.parse(userData) : null
+export function logoutUser() {
+    localStorage.removeItem('user');
+    user.set(null);
+    isAuthenticated.set(false);
 }
