@@ -21,7 +21,6 @@
     "vite": "^6.0.1"
   },
   "dependencies": {
-    "@mateothegreat/svelte5-router": "^0.1.35",
     "svelte-icons": "^2.1.0",
     "svelte-routing": "^2.13.0",
     "tippy.js": "^6.3.7",
