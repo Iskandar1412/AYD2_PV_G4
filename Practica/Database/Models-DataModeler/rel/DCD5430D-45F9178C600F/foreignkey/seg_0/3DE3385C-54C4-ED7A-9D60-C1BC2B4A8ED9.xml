@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="3DE3385C-54C4-ED7A-9D60-C1BC2B4A8ED9" containerWithKeyObject="384A9565-831D-9662-69C8-ACED854FF81A" localFKIndex="16DD8087-9347-6CBD-0D77-CE50081AC3DF" name="Transaccion_Retiro_FK">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>B736D26B-7B94-5040-A20A-20BB39C782A4</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<referredTableLongName>Retiro</referredTableLongName>
+<arc>4141C1D7-2C33-7A22-FF5E-D7960190F7BC</arc>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>94E61353-D3B4-15E2-97C6-9F49BFC1EBD3</referredTableID>
+<keyObject>C4495040-0608-79EE-DD8D-C283373BB10C</keyObject>
+<referredKeyID>C4495040-0608-79EE-DD8D-C283373BB10C</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>retiro_id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

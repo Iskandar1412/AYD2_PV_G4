@@ -1,0 +1,205 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="384A9565-831D-9662-69C8-ACED854FF81A" name="Transaccion">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>0A900151-6FE9-C48D-0826-A6A702196F31</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="trans_id" id="377F5FE7-D47B-E77B-6CEA-DEA619304134">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>61D8BD25-05B0-7720-4CC1-7B5B4D8B43C3</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="monto" id="D4D5E207-515E-628C-68FE-C7111EC9B99F">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>63D868A3-F960-49E5-E1EE-921D21391340</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="tipo" id="4ABE0325-D3C3-E657-9453-B70D28D59FBA">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>8B80A6BE-1550-F892-CA28-E79882F4C6BD</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<ownDataTypeParameters>,1,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha" id="420D0CA4-9495-9016-7C9C-B735CA35701A">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>DF9880D3-7857-4CF2-8734-2DEF938721CC</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cuenta_id" id="64F61E0C-0224-01A9-0BC9-5FCAC04720AB">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>A271A54D-F6E7-8FC0-34C9-3778876061FB</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="25340A16-6BFF-DDAD-EA90-593A5BCF2634" referredColumn="76BB18DA-152D-3534-EC8F-6BC4D63BD2DF"/>
+</associations>
+</Column>
+<Column name="servicio_id" id="3C63E681-CF45-3D43-F7A5-52FE9513479D">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>050A8E8D-C211-EBEE-0F33-CE300D628BCE</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DBCBEB30-ACC4-AAFA-07F0-A140339D06E9" referredColumn="99084E11-4A56-1E93-EE05-35A42BDAD296"/>
+</associations>
+</Column>
+<Column name="retiro_id" id="86F138EE-289D-E403-7030-07BF02DD838F">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>33EB6CBD-FC28-2461-A235-80C981011B24</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3DE3385C-54C4-ED7A-9D60-C1BC2B4A8ED9" referredColumn="50FE28CD-3D73-EA9D-C2D6-7B52E28012E8"/>
+</associations>
+</Column>
+<Column name="deposito_id" id="CB2FCF91-1402-0BEA-0806-AC147C6189F6">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>CF4A349D-E785-B4D9-D289-C328174AAD1F</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="197E8826-CB7F-09C2-523F-EC192D570361" referredColumn="BD775F42-3A9F-5604-85C9-DA685B5E47B1"/>
+</associations>
+</Column>
+<Column name="prestamo_id" id="E97D5595-EC2B-D23C-E0AA-5CF5060A523E">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>CCFD0798-F61B-5F32-3FA5-94A8FBF8B218</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="71F5698A-77AB-0163-D9DA-905BC8467519" referredColumn="ECA4C173-C58E-B0E2-145B-E9A8A2F5A1B0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C9359475-4FED-683B-AC4E-EBD7290136BC" name="Transaccion_PK">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>144BE64C-B216-30D1-211E-5F044191A5C6</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="377F5FE7-D47B-E77B-6CEA-DEA619304134"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="68A72EEE-83AC-71AD-2971-AC88A5AC72D2" name="Transaccion_Prestamo_FK">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>B2BCF552-4BA8-1D6C-B137-A46E74FA9B1B</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E97D5595-EC2B-D23C-E0AA-5CF5060A523E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="94843366-E464-EEAD-7FCB-2A7CBAB49619" name="Transaccion_Cuenta_FK">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>9720A308-4565-17C0-719C-C03D81A3DCC4</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="64F61E0C-0224-01A9-0BC9-5FCAC04720AB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="46244B40-C75C-2722-B9A1-065E8C91D8C9" name="Transaccion_Servicio_FK">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>E34A9E5D-174A-AA52-612A-CF466CD5F1B5</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3C63E681-CF45-3D43-F7A5-52FE9513479D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="16DD8087-9347-6CBD-0D77-CE50081AC3DF" name="Transaccion_Retiro_FK">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>B736D26B-7B94-5040-A20A-20BB39C782A4</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="86F138EE-289D-E403-7030-07BF02DD838F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E5325624-38FB-6C94-BEB9-4C587718776E" name="Transaccion_Deposito_FK">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>7A48D185-C890-A6C9-629D-2B94C64F7DF4</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CB2FCF91-1402-0BEA-0806-AC147C6189F6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

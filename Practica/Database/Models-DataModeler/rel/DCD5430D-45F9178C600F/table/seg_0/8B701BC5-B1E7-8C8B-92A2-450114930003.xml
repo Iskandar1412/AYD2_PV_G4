@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8B701BC5-B1E7-8C8B-92A2-450114930003" name="Prestamo">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>D01285F1-B5A3-5FA5-02DC-15C18B512D05</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="prestamo_id" id="ECA4C173-C58E-B0E2-145B-E9A8A2F5A1B0">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>A9281256-1353-A83C-7A9A-9D5B3DB6994D</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="saldo" id="FF5B66C9-56CB-BF5B-EA41-E8A51CD0E2BF">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>F99132B7-F04C-BB67-BC43-D5B061F8D956</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cuenta_id" id="B6DA1168-F44F-963D-75FA-8C8B33ADAA95">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>24284F32-EC44-553D-B73B-3936118C265C</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FCBFA98D-D8C4-C8F0-6836-82C095909D38" referredColumn="76BB18DA-152D-3534-EC8F-6BC4D63BD2DF"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DA6C7707-A0B0-4234-A8A2-AB0653430664" name="Prestamo_PK">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>37370A1E-FDAF-8CC4-5CDB-E66005E1AA81</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ECA4C173-C58E-B0E2-145B-E9A8A2F5A1B0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="59F49686-3918-0BDB-BB6A-B851A9FF38A5" name="Prestamo_Cuenta_FK">
+<createdBy>josep</createdBy>
+<createdTime>2024-12-06 00:58:08 UTC</createdTime>
+<generatorID>1CE00C2C-075A-06C7-9A89-A30B06DA7A41</generatorID>
+<ownerDesignName>Models-DataModeler</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B6DA1168-F44F-963D-75FA-8C8B33ADAA95"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
