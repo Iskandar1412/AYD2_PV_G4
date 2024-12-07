@@ -6,7 +6,6 @@
 	import Home from './lib/pages/Home.svelte';
 	import Register from './lib/pages/Register.svelte';
 	import { isAuthenticated } from './lib/stores/auth';
-	import Dashboard from './lib/pages/subpages/Dashboard.svelte';
 	import Creators from './lib/pages/subpages/Creators.svelte';
 	import Settings from './lib/pages/subpages/Settings.svelte';
 	import ProtectedRoute from './lib/pages/attributes/ProtectedRoute.svelte';
@@ -27,10 +26,19 @@
     <Route path="/home" >
         <ProtectedRoute component={Home} />
     </Route>
-    <Route path="/settings" >
+    <Route path="/allusers" >
+        <ProtectedRoute component={Home} />
+    </Route>
+    <Route path="/servicios" >
         <ProtectedRoute component={Settings} />
     </Route>
-    <Route path="/creators" >
+    <Route path="/prestamos" >
+        <ProtectedRoute component={Creators} />
+    </Route>
+    <Route path="/saldo" >
+        <ProtectedRoute component={Creators} />
+    </Route>
+    <Route path="/retirodeposito" >
         <ProtectedRoute component={Creators} />
     </Route>
 </Router>

@@ -2,25 +2,44 @@
 	import { onMount } from "svelte";
 	import { isAuthenticated, logoutUser, user } from "../../stores/auth";
 	import { navigate } from "svelte-routing";
+	import { sidebarOpen } from "../../stores/sidevar";
 
     onMount(() => {
         if($isAuthenticated === false) {
             navigate('/')
         }
     })
+
+    const toggleSidebar = () => {
+		sidebarOpen.update((open) => !open);
+	};
+
+    let isFullscreen = $state(false);
+
+	function toggleFullscreen() {
+		if (document.fullscreenElement) {
+			document.exitFullscreen();
+			isFullscreen = false;
+		} else {
+			document.documentElement.requestFullscreen();
+			isFullscreen = true;
+		}
+	}
 </script>
 
+{#if $user && $isAuthenticated}
 <!-- navbar -->
 <div
 	class="py-2 px-6 bg-[#f8f4f3] flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30"
 >
-	<button
-		type="button"
-		aria-label="boton-sidebar"
-		class="text-lg text-gray-900 font-semibold sidebar-toggle"
-	>
-		<i class="ri-menu-line"></i>
-	</button>
+    <button
+        type="button"
+        aria-label="boton-sidebar"
+        class="text-lg text-gray-900 font-semibold"
+        onclick={toggleSidebar}
+    >
+    <i class="ri-menu-line"></i>
+    </button>
 
 	<ul class="ml-auto flex items-center">
         {#if $user.rol === 1 || $user.rol === 2}
@@ -61,20 +80,27 @@
         {/if}
 
 		<button
-            id="fullscreen-button"
             aria-label="button-full-screen"
+            onclick={toggleFullscreen}
+            class="p-2 rounded-full hover:bg-gray-100"
         >
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="24"
-				height="24"
-				class="hover:bg-gray-100 rounded-full"
-				viewBox="0 0 24 24"
-				style="fill: gray; transform: ; msfilter: "
-			>
-				<path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z"></path>
-			</svg>
-		</button>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                style="fill: gray;"
+                class="transition-transform"
+            >
+                {#if isFullscreen}
+                    <!-- Ícono de salir de pantalla completa -->
+                    <path d="M3 3h7v2H5v5H3zm14 0h4v4h-2V5h-2zm0 14h2v2h2v4h-7zm-14 0h2v2h2v2H3zm7-7h2v2H7v2H5v-4zm4 2h2v2h-4v-4z"></path>
+                {:else}
+                    <!-- Ícono de entrar en pantalla completa -->
+                    <path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z"></path>
+                {/if}
+            </svg>
+        </button>
 
 		<li class="dropdown ml-3">
 			<button type="button" class="dropdown-toggle flex items-center">
@@ -134,3 +160,4 @@
 	</ul>
 </div>
 <!-- end navbar -->
+{/if}

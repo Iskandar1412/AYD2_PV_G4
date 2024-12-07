@@ -6,6 +6,7 @@
 	import Sidenav from './attributes/Sidenav.svelte';
 	import Navbar from './attributes/Navbar.svelte';
 	import ContentHome from './attributes/ContentHome.svelte';
+	import { sidebarOpen } from '../stores/sidevar';
 	onMount(() => {
 		console.log($user.id);
 		
@@ -16,6 +17,11 @@
 		if ($isAuthenticated === false) {
 			navigate('/');
 		}
+	});
+
+    let isSidebarOpen = $state();
+	sidebarOpen.subscribe((value) => {
+		isSidebarOpen = value;
 	});
 </script>
 
@@ -31,9 +37,15 @@
 	<title>Home {$user.nombres}</title>
 </svelte:head>
 
-<main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-200 min-h-screen transition-all main">
+{#if $user && $isAuthenticated}
+<main 
+    class="transition-all bg-gray-200 min-h-screen"
+    class:ml-64={isSidebarOpen}
+    class:ml-0={!isSidebarOpen}
+>
 	<Sidenav />
 	<Navbar />
 
 	<ContentHome />
 </main>
+{/if}
