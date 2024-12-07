@@ -158,9 +158,11 @@
                 class:hidden={!isUserMenuOpen}
             >
                 <li>
-                    <a href="#" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">
+                    <button 
+                        class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50"
+                    >
                         Profile
-                    </a>
+                    </button>
                 </li>
                 <li>
                     <form>

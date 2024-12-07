@@ -52,16 +52,16 @@ import { isAuthenticated, user } from "../../stores/auth";
         </li>
         {#if $user.rol === 1 || $user.rol === 2}
         <li class="mb-1 group">
-            <a
-                href="#"
+            <button
                 class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md"
                 class:selected={activeMenu === 'usuarios'}
+                style:width="100%"
                 onclick={() => toggleMenu('usuarios')}
             >
                 <i class="bx bx-user mr-3 text-lg"></i>
                 <span class="text-sm">Usuarios</span>
                 <i class="ri-arrow-right-s-line ml-auto" class:rotate-90={activeMenu === 'usuarios'}></i>
-            </a>
+            </button>
             <ul class="pl-7 mt-2" class:hidden={activeMenu !== 'usuarios'}>
                 <li class="mb-4">
                     <Link
@@ -77,16 +77,16 @@ import { isAuthenticated, user } from "../../stores/auth";
 		
 		<span class="text-gray-400 font-bold">SERVICIOS</span>
 		<li class="mb-1 group">
-            <a
-                href="#"
+            <button
                 class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md"
                 class:selected={activeMenu === 'gestiones'}
+                style:width="100%"
                 onclick={() => toggleMenu('gestiones')}
             >
                 <i class="bx bxl-blogger mr-3 text-lg"></i>
                 <span class="text-sm">Gestiones</span>
                 <i class="ri-arrow-right-s-line ml-auto" class:rotate-90={activeMenu === 'gestiones'}></i>
-            </a>
+            </button>
             <ul class="pl-7 mt-2" class:hidden={activeMenu !== 'gestiones'}>
                 {#if $user.rol === 1 || $user.rol === 2}
                     <li class="mb-4">
