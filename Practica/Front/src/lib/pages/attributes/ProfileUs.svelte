@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from "svelte";
-	import { isAuthenticated, logoutUser, user } from "../stores/auth";
+	import { isAuthenticated, logoutUser, user } from "../../stores/auth";
 	import { navigate } from "svelte-routing";
     let menuVisible = $state(false);
 
@@ -38,7 +38,15 @@
             />
         </div>
         <div class="text-sm font-semibold text-gray-100">{$user.nombres.split(' ')[0]}</div>
-        <div class="text-xs text-gray-300">Active</div>
+        <div class="text-xs text-gray-300">
+            {#if $user.rol === 1}
+                Administrador
+            {:else if $user.rol === 2}
+                Personal
+            {:else if $user.rol === 3}
+                Usuario
+            {/if}
+        </div>
     </button>
     {#if menuVisible}
         <div 

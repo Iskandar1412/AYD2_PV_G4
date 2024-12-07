@@ -1,6 +1,6 @@
 <script>
-	import { navigate, Router, Route, Link } from "svelte-routing";
-	import { isAuthenticated, loginUser, logoutUser, user } from "../stores/auth";
+	import { navigate, Link } from "svelte-routing";
+	import { isAuthenticated, loginUser } from "../stores/auth";
 	import { onMount } from "svelte";
 
 	onMount(() => {
@@ -30,8 +30,9 @@
 	}
 
 	let usuariosquemados = $state([
-		{ no: 1254, id: 1, cui: '1111111111111', pass: '123', nombres: 'Jose pablo', apellidos: 'bats' },
-		{ no: 1255, id: 2, cui: '2222222222222', pass: '123', nombres: 'iskandar', apellidos: 'urs' }
+		{ no: 1254, id: 1, cui: '1111111111111', pass: '123', nombres: 'Jose pablo', apellidos: 'bats', rol: 3 },
+		{ no: 1255, id: 2, cui: '2222222222222', pass: '123', nombres: 'iskandar', apellidos: 'urs', rol: 1 },
+		{ no: 1255, id: 2, cui: '3333333333333', pass: '123', nombres: 'pau', apellidos: 'urs', rol: 2 },
 	])
 
 	function handleInput(event) {
@@ -71,7 +72,7 @@
 			<img
 				src="https://readymadeui.com/signin-image.webp"
 				class="lg:w-[70%] w-full h-full object-contain block mx-auto"
-				alt="login-image"
+				alt="logo"
 			/>
 		</div>
 
@@ -87,6 +88,7 @@
 						<Link 
 							class="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap"
 							to='/register'
+							onclick={clearInputs}
 						>
 							Regístrese aquí
 						</Link>
@@ -94,10 +96,11 @@
 				</div>
 
 				<div>
-					<label class="text-gray-800 text-[15px] mb-2 block">CUI</label>
+					<label for='cui' class="text-gray-800 text-[15px] mb-2 block">CUI</label>
 					<div class="relative flex items-center">
 						<input
 							name="cui"
+							id='cui'
 							type="number"
 							required
 							class="w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-4 py-3.5 rounded-md outline-blue-600"
@@ -136,9 +139,10 @@
 				</div>
 
 				<div class="mt-4">
-					<label class="text-gray-800 text-[15px] mb-2 block">Contraseña</label>
+					<label for='pass' class="text-gray-800 text-[15px] mb-2 block">Contraseña</label>
 					<div class="relative flex items-center">
 						<input
+							id='pass'
 							name="password"
 							type="password"
 							required
