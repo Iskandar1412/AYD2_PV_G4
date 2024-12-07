@@ -1,11 +1,14 @@
 <script>
-	import { Router, Route, navigate } from 'svelte-routing';
+	// import { Router, Route, navigate } from 'svelte-routing';
+	import { navigate, Route, Router } from 'svelte-routing';
 	import { onMount } from 'svelte';
 	import Login from './lib/pages/Login.svelte';
 	import Home from './lib/pages/Home.svelte';
 	import Register from './lib/pages/Register.svelte';
 	import { isAuthenticated } from './lib/stores/auth';
-
+	import Creators from './lib/pages/subpages/Creators.svelte';
+	import Settings from './lib/pages/subpages/Settings.svelte';
+	import ProtectedRoute from './lib/pages/attributes/ProtectedRoute.svelte';
     onMount(() => {})    
     $effect.pre(() => {     
         if($isAuthenticated) {
@@ -14,10 +17,28 @@
             navigate('/')
         }
     })
+
 </script>
 
 <Router>
     <Route path="/" ><Login /></Route>
     <Route path="/register" ><Register /></Route>
-    <Route path="/home" ><Home /></Route>
+    <Route path="/home" >
+        <ProtectedRoute component={Home} />
+    </Route>
+    <Route path="/allusers" >
+        <ProtectedRoute component={Home} />
+    </Route>
+    <Route path="/servicios" >
+        <ProtectedRoute component={Settings} />
+    </Route>
+    <Route path="/prestamos" >
+        <ProtectedRoute component={Creators} />
+    </Route>
+    <Route path="/saldo" >
+        <ProtectedRoute component={Creators} />
+    </Route>
+    <Route path="/retirodeposito" >
+        <ProtectedRoute component={Creators} />
+    </Route>
 </Router>

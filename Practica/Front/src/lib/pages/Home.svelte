@@ -1,35 +1,51 @@
 <script>
-	import { onMount } from "svelte";
-	import SideBar from "./SideBar.svelte";
-	import { isAuthenticated, user } from "../stores/auth";
-	import { navigate, Route } from "svelte-routing";
-    
-    onMount(() => {
-        console.log($user.id)
-    })
+	import { onMount } from 'svelte';
+	// import SideBar from "./attributes/SideBar.svelte";
+	import { isAuthenticated, user } from '../stores/auth';
+	import { navigate } from 'svelte-routing';
+	import Sidenav from './attributes/Sidenav.svelte';
+	import Navbar from './attributes/Navbar.svelte';
+	import ContentHome from './attributes/ContentHome.svelte';
+	import { sidebarOpen } from '../stores/sidevar';
+	onMount(() => {
+		console.log($user.id);
+		
+	});
 
-    $effect.pre(() => {
-        if($isAuthenticated) {
-            
-        } else {
-            navigate('/')
-        }
-    })
 
+	$effect.pre(() => {
+		if ($isAuthenticated === false) {
+			navigate('/');
+		}
+	});
+
+    let isSidebarOpen = $state();
+	sidebarOpen.subscribe((value) => {
+		isSidebarOpen = value;
+	});
 </script>
 
-<div class="h-screen w-full bg-white flex overflow-hidden">
-    <SideBar  />
+<svelte:head>
+	<link rel="preconnect" href="https://fonts.bunny.net" />
+	<link
+		href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap"
+		rel="stylesheet"
+	/>
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+	<script src="https://cdn.tailwindcss.com"></script>
+	<title>Home {$user.nombres}</title>
+</svelte:head>
 
-    <!-- Main Content -->
-    <div class="w-full h-full flex flex-col">
-        <main class="flex-1 overflow-y-auto p-4">
-            <div class="w-full h-40 bg-gray-400 rounded-lg flex items-center justify-center">
-                asdf
-            </div>
-            <Route path='/home/dashboard'></Route>
-            <Route path='/home/settings'></Route>
-            <Route path='/home/creators'></Route>
-        </main>
-    </div>
-</div>
+{#if $user && $isAuthenticated}
+<main 
+    class="transition-all bg-gray-200 min-h-screen"
+    class:ml-64={isSidebarOpen}
+    class:ml-0={!isSidebarOpen}
+>
+	<Sidenav />
+	<Navbar />
+
+	<ContentHome />
+</main>
+{/if}

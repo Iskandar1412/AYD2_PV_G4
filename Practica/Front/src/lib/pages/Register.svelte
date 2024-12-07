@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from "svelte";
-	import { Link } from "svelte-routing";
+	import { Link, navigate } from "svelte-routing";
 
 	let cui = $state();
     let cuiText = $state();
@@ -41,6 +41,7 @@
         console.log(cuiText, nameText, lastText, passwordText);
         clearInputs();
         submit = false;
+		navigate('/')
     }
 </script>
 
@@ -75,9 +76,10 @@
 
 			<div class="space-y-6">
 				<div>
-					<label class="text-gray-800 text-sm mb-2 block">Nombre</label>
+					<label for='nombre-usuario' class="text-gray-800 text-sm mb-2 block">Nombre</label>
 					<div class="relative flex items-center">
 						<input
+							id='nombre-usuario'
 							name="name"
 							type="text"
 							required
@@ -103,9 +105,10 @@
 				</div>
 
 				<div>
-					<label class="text-gray-800 text-sm mb-2 block">Apellido</label>
+					<label for='apellido-usuario' class="text-gray-800 text-sm mb-2 block">Apellido</label>
 					<div class="relative flex items-center">
 						<input
+							id='apellido-usuario'
 							name="last"
 							type="text"
 							required
@@ -131,9 +134,10 @@
 				</div>
 
 				<div>
-					<label class="text-gray-800 text-sm mb-2 block">CUI</label>
+					<label for='cui-usuario' class="text-gray-800 text-sm mb-2 block">CUI</label>
 					<div class="relative flex items-center">
 						<input
+							id='cui-usuario'
 							name="cui"
 							type="number"
 							required
@@ -160,9 +164,10 @@
 				</div>
 
 				<div>
-					<label class="text-gray-800 text-sm mb-2 block">Contraseña</label>
+					<label for='pass-usuario' class="text-gray-800 text-sm mb-2 block">Contraseña</label>
 					<div class="relative flex items-center">
 						<input
+							id='pass-usuario'
 							name="password"
 							type="password"
 							required
