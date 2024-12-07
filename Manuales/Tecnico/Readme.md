@@ -3,14 +3,15 @@
 ## Core del negocio
 
 La compañia Money Bin es una institucion financiera que ofrece diferentes servicios bancarios a sus afiliados y clientes en toda Guatemala, esto conlleva a que la empresa maneja un gran volumen de transacciones
-por lo que la compañia a marcado el objetivo de mejorar la atencion al cliente y la optimizacion de sus recursos por lo que nace la idea de la implementacion de una plataforma, que se centra en brindar a los diferentes establecimientos afiliados a la compañia y a los propios clientes no solo mejorar los tiempo al eliminar la necesidad de sucursales asi como ofrecer una forma inovadora en la manera en que se realizan las diferentes transacciones bancarias. La plataforma les permite realizar diferentes acciones bancarias dentro estas funcionalidades se resumen en:
-
-**Pago de servicio**: Los clientes solicitan al encargado el pago de un servicio como agua, luz, telefono o internet y el encargado dentro de la plataforma registra el pago del servico.
-**Pago de prestamos**: Los clientes solicitan al encargado el pago de un prestamo con saldo pendiente y el encargado dentro de la plataforma registra el pago del parcial o completo del prestamo.
-**Retiro y deposito de dinero**: Los clientes solicitan al encargado retirar o depositar dinero a sus cuentas.
-**Generacion de comprobantes**: Los encargado pueden generar reportes sobre el detalle de las transacciones de los clientes.
-**Busqueda de cuentas y clientes**: Los encargados pueden realizar busquedas de manera instantanea de la informacion del cliente e informacion sus cuentas.
-**Consulta de saldos**: Los clientes solicitan la consulta de saldos en sus cuentas.
+por lo que la compañia a marcado el objetivo de mejorar la atencion al cliente y la optimizacion de sus recursos por lo que nace la idea de la implementacion de una plataforma, 
+que se centra en brindar a los diferentes establecimientos afiliados a la compañia y a los propios clientes no solo mejorar los tiempo al eliminar la necesidad de sucursales asi como ofrecer una forma 
+inovadora en la manera en que se realizan las diferentes transacciones bancarias. Los servicios los cuales ofrece la compañia y los cuales se busca prestar dentro de la plataforma son:
+- **Pago de servicio**
+- **Pago de prestamos**
+- **Retiro y deposito de dinero**
+- **Generacion de comprobantes**
+- **Busqueda de cuentas y clientes**
+- **Consulta de saldos**
 
 ## Casos de Uso de Alto Nivel
 
@@ -54,7 +55,7 @@ por lo que la compañia a marcado el objetivo de mejorar la atencion al cliente 
 
 ## CDU expandidos
 
-## Arquitectura candidata
+## Arquitectura candidata (Diagrama de Bloques)
 
 ## Diagrama entidad relación
 
