@@ -5,7 +5,6 @@
 	import { navigate } from 'svelte-routing';
 	import Sidenav from './attributes/Sidenav.svelte';
 	import Navbar from './attributes/Navbar.svelte';
-	import ContentHome from './attributes/ContentHome.svelte';
 	import { sidebarOpen } from '../stores/sidevar';
 	onMount(() => {
 		console.log($user.id);
@@ -33,7 +32,7 @@
 	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 	<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
 	<script src="https://cdn.tailwindcss.com"></script>
-	<title>Home {$user.nombres}</title>
+	<title>Prestamos</title>
 </svelte:head>
 
 {#if $user && $isAuthenticated}
@@ -45,6 +44,6 @@
 	<Sidenav />
 	<Navbar />
 
-	<ContentHome />
+	Pago Prestamos
 </main>
 {/if}
