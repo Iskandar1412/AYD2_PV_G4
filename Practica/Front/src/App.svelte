@@ -6,9 +6,12 @@
 	import Home from './lib/pages/Home.svelte';
 	import Register from './lib/pages/Register.svelte';
 	import { isAuthenticated } from './lib/stores/auth';
-	import Creators from './lib/pages/subpages/Creators.svelte';
-	import Settings from './lib/pages/subpages/Settings.svelte';
 	import ProtectedRoute from './lib/pages/attributes/ProtectedRoute.svelte';
+	import Servicio from './lib/pages/Servicio.svelte';
+	import Prestamo from './lib/pages/Prestamo.svelte';
+	import Saldo from './lib/pages/Saldo.svelte';
+	import RetDep from './lib/pages/RetDep.svelte';
+	import MostrarUsuarios from './lib/pages/MostrarUsuarios.svelte';
     onMount(() => {})    
     $effect.pre(() => {     
         if($isAuthenticated) {
@@ -27,18 +30,18 @@
         <ProtectedRoute component={Home} />
     </Route>
     <Route path="/allusers" >
-        <ProtectedRoute component={Home} />
+        <ProtectedRoute component={MostrarUsuarios} />
     </Route>
     <Route path="/servicios" >
-        <ProtectedRoute component={Settings} />
+        <ProtectedRoute component={Servicio} />
     </Route>
     <Route path="/prestamos" >
-        <ProtectedRoute component={Creators} />
+        <ProtectedRoute component={Prestamo} />
     </Route>
     <Route path="/saldo" >
-        <ProtectedRoute component={Creators} />
+        <ProtectedRoute component={Saldo} />
     </Route>
     <Route path="/retirodeposito" >
-        <ProtectedRoute component={Creators} />
+        <ProtectedRoute component={RetDep} />
     </Route>
 </Router>
