@@ -65,6 +65,10 @@
 			mensajeError = 'Usuario no encontrado.';
 		}
 	}
+
+	function obtenerTransaccionesOrdenadas() {
+		return usuario ? [...usuario.transacciones].sort((a, b) => a.trans_id - b.trans_id) : [];
+	}
 </script>
 
 <div class="p-6">
@@ -134,7 +138,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							{#each usuario.transacciones.sort((a, b) => a.trans_id - b.trans_id) as transaccion}
+							{#each obtenerTransaccionesOrdenadas() as transaccion}
 								<tr>
 									<td class="border px-4 py-2">{transaccion.trans_id}</td>
 									<td class="border px-4 py-2">{transaccion.tipo}</td>
