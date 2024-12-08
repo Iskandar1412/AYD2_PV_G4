@@ -6,13 +6,22 @@ BEGIN
     DECLARE v_fecha_ultima_transaccion DATETIME;
     DECLARE v_existe_cliente INT;
     DECLARE v_is_cui BOOLEAN;
+    DECLARE v_error_message VARCHAR(255);
 
     -- Manejo de errores
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
+        -- Obtener detalles del error
+        GET DIAGNOSTICS CONDITION 1
+            v_error_message = MESSAGE_TEXT;
+
+        -- Hacer rollback de la transacción
+        ROLLBACK;
+
+        -- Retornar el error en formato JSON con el mensaje heredado
         SELECT JSON_OBJECT(
             'status', 'error',
-            'message', 'Ha ocurrido un error al consultar el saldo'
+            'message', CONCAT('Ha ocurrido un error: ', v_error_message)
         ) AS resultado;
     END;
 
@@ -62,7 +71,7 @@ BEGIN
 
     -- Si no hay transacciones, asignar NULL a la fecha
     IF v_fecha_ultima_transaccion IS NULL THEN
-        SET v_fecha_ultima_transaccion = 'NULL';
+        SET v_fecha_ultima_transaccion = NULL;
     END IF;
 
     -- Retornar el saldo y la fecha de última transacción en formato JSON
@@ -71,7 +80,7 @@ BEGIN
         'message', 'Saldo consultado exitosamente',
         'cuenta_id', v_cuenta_id,
         'saldo', v_saldo,
-        'fecha_ultima_transaccion', v_fecha_ultima_transaccion
+        'fecha_ultima_transaccion', IFNULL(DATE_FORMAT(v_fecha_ultima_transaccion, '%Y-%m-%d %H:%i:%s'), 'Sin transacciones')
     ) AS resultado;
 
 END;
