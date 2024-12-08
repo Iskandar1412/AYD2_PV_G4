@@ -31,7 +31,7 @@ exports.getSaldo = async(req,res) =>{
         const result = await obtenerSaldo(data.cuenta);
         res.status(200).json(result);
     } catch (error) {
-        res.status(500).json({ error: 'Error al validar el usuario: ' + error.message });
+        res.status(500).json({ error: 'Error al obtener el saldo del usuario: ' + error.message });
     }
 }
 
