@@ -1,0 +1,16 @@
+<script>
+	import { user } from "../../stores/auth";
+	import AdminPrestamo from "../subpages/AdminPrestamo.svelte";
+	import UserPrestamo from "../subpages/UserPrestamo.svelte";
+
+</script>
+
+<!-- Content -->
+<div class="p-6">
+	{#if $user.rol === 1 || $user.rol === 2}
+		<AdminPrestamo />
+	{:else if $user.rol === 3}
+		<UserPrestamo />
+	{/if}
+</div>
+<!-- End Content -->
