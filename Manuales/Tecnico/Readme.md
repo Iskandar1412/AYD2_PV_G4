@@ -18,6 +18,12 @@ tambien ofrecer una forma inovadora en la manera en que se realizan las diferent
 
 ![CDU](./img/DiagramaCDU.jpg)
 
+### Descomposicion Casos de Uso de Alto Nivel
+
+![CDU](./img/DiagramaCDU2.jpg)
+
+![CDU](./img/DiagramaCDU1.jpg)
+
 ## Requerimientos Funcionales
 
 1. **Inicio de sesion**: El usuario puede ingresar a la plataforma ingresando su CUI y contraseña.
