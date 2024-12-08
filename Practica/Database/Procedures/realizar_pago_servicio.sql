@@ -7,6 +7,7 @@ BEGIN
     DECLARE v_servicio_id INT;
     DECLARE v_encargado_existe INT;
     DECLARE v_error_message VARCHAR(255);
+   	DECLARE v_trans_id INT;
 
     -- Manejo de errores
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -95,4 +96,3 @@ BEGIN
     ) AS resultado;
 
 END;
-
