@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234  # Cambia esta contraseña a la que prefieras
+      MYSQL_DATABASE: dbmoneybin          # Nombre de la base de datos a crear
+    ports:
+      - "3306:3306"  # Exponiendo el puerto 3306 para acceder a MySQL
+    volumes:
+      - mysql_data:/var/lib/mysql          # Persistencia de datos en un volumen
+
+volumes:
+  mysql_data:
