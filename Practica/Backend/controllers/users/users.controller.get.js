@@ -12,6 +12,7 @@ async function comprobarUsuario(cui, contrasenia) {
         if (result) {
             return result;
         } else {
+            console.log(result);
             throw new Error('Resultado inesperado del procedimiento');
         }
     } catch (error) {
