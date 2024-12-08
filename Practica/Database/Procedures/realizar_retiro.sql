@@ -4,6 +4,7 @@ create
 BEGIN
     DECLARE v_saldo_actual DECIMAL(10, 2);
     DECLARE v_retiro_id INT;
+   	DECLARE v_num_retiro_id INT;
     DECLARE v_encargado_existe INT;
     DECLARE v_error_message VARCHAR(255);
     DECLARE v_tipo_retiro VARCHAR(255);
@@ -79,17 +80,17 @@ BEGIN
     ) VALUES (
         p_monto, 'retiro', p_fecha, p_cuenta_id, p_encargado_cui, v_retiro_id
     );
-
+	SET v_num_retiro_id = LAST_INSERT_ID();
     COMMIT;
 
     -- Retornar respuesta exitosa
     SELECT JSON_OBJECT(
         'status', 'success',
         'message', 'Retiro realizado exitosamente',
+        'retiro_id',v_num_retiro_id,
         'cuenta_id', p_cuenta_id,
         'monto', p_monto,
         'fecha', p_fecha,
         'tipo_retiro', v_tipo_retiro
     ) AS resultado;
 END;
-

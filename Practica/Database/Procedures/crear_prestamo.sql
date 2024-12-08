@@ -2,6 +2,7 @@ create
     definer = root@`%` procedure crear_prestamo(IN p_cuenta_id int, IN p_saldo int, IN p_fecha datetime)
 BEGIN
     DECLARE v_cuenta_existente INT;
+    DECLARE v_prestamo_id INT;
 
     -- Manejo de errores
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -37,6 +38,8 @@ BEGIN
     ) VALUES (
         p_fecha, p_saldo, p_cuenta_id
     );
+   
+   SET v_prestamo_id = LAST_INSERT_ID();
 
     COMMIT;
 
@@ -44,10 +47,10 @@ BEGIN
     SELECT JSON_OBJECT(
         'status', 'success',
         'message', 'Préstamo creado exitosamente',
+        'prestamo_id', v_prestamo_id,
         'cuenta_id', p_cuenta_id,
         'saldo', p_saldo,
         'fecha', p_fecha
     ) AS resultado;
 
 END;
-
