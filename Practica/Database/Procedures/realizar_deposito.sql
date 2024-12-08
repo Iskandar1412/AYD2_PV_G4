@@ -6,6 +6,7 @@ BEGIN
     DECLARE v_encargado_existe INT;
     DECLARE v_error_message VARCHAR(255);
     DECLARE v_deposito_id INT;
+   	DECLARE v_num_deposito_id INT;
     DECLARE v_tipo_deposito VARCHAR(50);
 
     -- Manejo de errores
@@ -70,16 +71,17 @@ BEGIN
         p_monto, 'deposito', p_fecha, p_cuenta_id, p_encargado_cui, v_deposito_id
     );
 
+   	SET v_num_deposito_id = LAST_INSERT_ID();
     COMMIT;
 
     -- Retornar respuesta exitosa
     SELECT JSON_OBJECT(
         'status', 'success',
         'message', 'Depósito realizado exitosamente',
+        'deposito_id',v_num_deposito_id,
         'cuenta_id', p_cuenta_id,
         'monto', p_monto,
         'fecha', p_fecha,
         'tipo_deposito', v_tipo_deposito
     ) AS resultado;
 END;
-
