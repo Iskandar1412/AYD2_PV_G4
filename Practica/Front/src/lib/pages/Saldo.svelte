@@ -6,6 +6,7 @@
 	import Sidenav from './attributes/Sidenav.svelte';
 	import Navbar from './attributes/Navbar.svelte';
 	import { sidebarOpen } from '../stores/sidevar';
+	import ContentSaldo from './subpages/ContentSaldo.svelte';
 	onMount(() => {
 		console.log($user.id);
 		
@@ -44,6 +45,6 @@
 	<Sidenav />
 	<Navbar />
 
-	Mostrar Saldo
+	<ContentSaldo />
 </main>
 {/if}

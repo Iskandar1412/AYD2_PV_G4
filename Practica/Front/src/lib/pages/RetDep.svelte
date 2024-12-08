@@ -6,6 +6,7 @@
 	import Sidenav from './attributes/Sidenav.svelte';
 	import Navbar from './attributes/Navbar.svelte';
 	import { sidebarOpen } from '../stores/sidevar';
+	import ContentRetRep from './attributes/ContentRetRep.svelte';
 	onMount(() => {
 		console.log($user.id);
 		
@@ -44,6 +45,6 @@
 	<Sidenav />
 	<Navbar />
 
-	RetiroDep
+	<ContentRetRep />
 </main>
 {/if}
