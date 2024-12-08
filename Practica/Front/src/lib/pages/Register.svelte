@@ -47,7 +47,7 @@
 		})
 		.then(response => response.json())
 		.then(data => {
-			if(data.ok) {
+			if(data.success) {
 				alert("usuario creado exitosamente")
 				clearInputs();
 				submit = false;
