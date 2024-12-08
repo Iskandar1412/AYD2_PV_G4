@@ -1,3 +1,69 @@
+<script>
+	import { navigate, Link } from "svelte-routing";
+	import { isAuthenticated, loginUser } from "../stores/auth";
+	import { onMount } from "svelte";
+
+	onMount(() => {
+		if($isAuthenticated) {
+			navigate('/home')
+		} else {
+			navigate('/')
+		}
+	})
+
+	$effect.pre(() => {
+		if($isAuthenticated === false) {
+			navigate('/')
+		}
+	})
+	
+	let cui = $state();
+	let cuiText = $state();
+	let password = $state()
+	let passwordText = $state();
+	let submit = $state(false);
+	let cuiFull = $state(false);
+
+	function clearInputs() {
+		cuiText = ''
+		passwordText = ''
+	}
+
+	let usuariosquemados = $state([
+		{ no: 1254, id: 1, cui: '1111111111111', pass: '123', nombres: 'Jose pablo', apellidos: 'bats', rol: 3 },
+		{ no: 1255, id: 2, cui: '2222222222222', pass: '123', nombres: 'iskandar', apellidos: 'urs', rol: 1 },
+		{ no: 1255, id: 2, cui: '3333333333333', pass: '123', nombres: 'pau', apellidos: 'urs', rol: 2 },
+	])
+
+	function handleInput(event) {
+		const value = event.target.value;
+		if(value.length > 13) {
+			cuiText = value.slice(0, 13);
+		} else { cuiText = value.replace(/[^\d]/g, '') }
+		if(value.length < 13) { cuiFull = false }
+		else if (value.length === 13) { cuiFull = true }
+	}
+
+	async function handleLoginForm(event) {
+		event.preventDefault();
+		submit = true
+		// console.log(cuiText, passwordText)
+		const usuario = usuariosquemados.find(
+			(user) => user.cui === cuiText.toString() && user.pass === passwordText
+		)
+		
+		if (usuario) {
+			loginUser(usuario)
+			navigate('/home')
+		} else {
+			alert('Usuario no existente')
+			navigate('/')
+		}
+		clearInputs()
+		submit = false
+	}
+</script>
+
 <div class="font-[sans-serif]">
 	<div class="grid lg:grid-cols-3 md:grid-cols-2 items-center gap-4 h-full">
 		<div
@@ -6,32 +72,42 @@
 			<img
 				src="https://readymadeui.com/signin-image.webp"
 				class="lg:w-[70%] w-full h-full object-contain block mx-auto"
-				alt="login-image"
+				alt="logo"
 			/>
 		</div>
 
 		<div class="w-full p-6">
-			<form>
+			<form
+				class="form-login"
+				onsubmit={handleLoginForm}
+			>
 				<div class="mb-8">
-					<h3 class="text-gray-800 text-3xl font-extrabold">Sign in</h3>
+					<h3 class="text-gray-800 text-3xl font-extrabold">Inicio de Seción</h3>
 					<p class="text-sm mt-4 text-gray-800">
-						Don't have an account <a
-							href="javascript:void(0);"
+						¿No tiene una cuenta?
+						<Link 
 							class="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap"
-							>Register here</a
+							to='/register'
+							onclick={clearInputs}
 						>
+							Regístrese aquí
+						</Link>
 					</p>
 				</div>
 
 				<div>
-					<label class="text-gray-800 text-[15px] mb-2 block">Email</label>
+					<label for='cui' class="text-gray-800 text-[15px] mb-2 block">CUI</label>
 					<div class="relative flex items-center">
 						<input
-							name="email"
-							type="text"
+							name="cui"
+							id='cui'
+							type="number"
 							required
 							class="w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-4 py-3.5 rounded-md outline-blue-600"
-							placeholder="Enter email"
+							bind:this={cui}
+							bind:value={cuiText}
+							oninput={handleInput}
+							placeholder="Ingrese CUI"
 						/>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -63,14 +139,17 @@
 				</div>
 
 				<div class="mt-4">
-					<label class="text-gray-800 text-[15px] mb-2 block">Password</label>
+					<label for='pass' class="text-gray-800 text-[15px] mb-2 block">Contraseña</label>
 					<div class="relative flex items-center">
 						<input
+							id='pass'
 							name="password"
 							type="password"
 							required
 							class="w-full text-sm text-gray-800 bg-gray-100 focus:bg-transparent px-4 py-3.5 rounded-md outline-blue-600"
-							placeholder="Enter password"
+							bind:this={password}
+							bind:value={passwordText}
+							placeholder="Ingrese contraseña"
 						/>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -89,13 +168,27 @@
 
 				<div class="mt-8">
 					<button
-						type="button"
+						type="submit"
 						class="w-full py-3 px-6 text-sm tracking-wide rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+						disabled={!cuiFull || !passwordText}
 					>
-						Sign in
+						Ingresar
 					</button>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+
+<style lang="scss">
+	.form-login {
+		div {
+			button {
+				&:disabled {
+					opacity: 0.4;
+					cursor: not-allowed;
+				}
+			}
+		}
+	}
+</style>

@@ -1,4 +1,7 @@
 <script>
+	import { onMount } from "svelte";
+	import { Link, navigate } from "svelte-routing";
+
 	let cui = $state();
     let cuiText = $state();
     let name = $state();
@@ -9,6 +12,7 @@
     let passwordText = $state();
     let submit = $state(false);
     let disableAdding = $state(false);
+	let cuiFull = $state(false)
 
     function clearInputs() {
         cuiText = '';
@@ -17,12 +21,27 @@
         passwordText = '';
     }
 
+	function handleInput(event) {
+        const value = event.target.value;
+        if (value.length > 13) {
+            cuiText = value.slice(0, 13);
+        } else {
+            cuiText = value.replace(/[^\d]/g, '');
+        }
+		if (value.length < 13) {
+			cuiFull = false
+		} else if (value.length === 13) {
+			cuiFull = true
+		}
+    }
+
     async function handleSubmitUser (event) {
         event.preventDefault();
         submit = true;
         console.log(cuiText, nameText, lastText, passwordText);
         clearInputs();
         submit = false;
+		navigate('/')
     }
 </script>
 
@@ -57,9 +76,10 @@
 
 			<div class="space-y-6">
 				<div>
-					<label class="text-gray-800 text-sm mb-2 block">Nombre</label>
+					<label for='nombre-usuario' class="text-gray-800 text-sm mb-2 block">Nombre</label>
 					<div class="relative flex items-center">
 						<input
+							id='nombre-usuario'
 							name="name"
 							type="text"
 							required
@@ -85,9 +105,10 @@
 				</div>
 
 				<div>
-					<label class="text-gray-800 text-sm mb-2 block">Last Name</label>
+					<label for='apellido-usuario' class="text-gray-800 text-sm mb-2 block">Apellido</label>
 					<div class="relative flex items-center">
 						<input
+							id='apellido-usuario'
 							name="last"
 							type="text"
 							required
@@ -113,17 +134,18 @@
 				</div>
 
 				<div>
-					<label class="text-gray-800 text-sm mb-2 block">CUI</label>
+					<label for='cui-usuario' class="text-gray-800 text-sm mb-2 block">CUI</label>
 					<div class="relative flex items-center">
 						<input
+							id='cui-usuario'
 							name="cui"
 							type="number"
-                            maxlength="13"
 							required
 							class="text-gray-800 bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500"
                             bind:this={cui}
                             bind:value={cuiText}
-							placeholder="Enter CUI"
+							oninput={handleInput}
+							placeholder="Ingrese número de CUI"
 						/>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -142,16 +164,17 @@
 				</div>
 
 				<div>
-					<label class="text-gray-800 text-sm mb-2 block">Password</label>
+					<label for='pass-usuario' class="text-gray-800 text-sm mb-2 block">Contraseña</label>
 					<div class="relative flex items-center">
 						<input
+							id='pass-usuario'
 							name="password"
 							type="password"
 							required
 							class="text-gray-800 bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500"
                             bind:this={password}
                             bind:value={passwordText}
-                            placeholder="Enter password"
+                            placeholder="Ingrese contraseña"
 						/>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -172,21 +195,22 @@
 
 			<div class="!mt-12">
 				<button
-					type="button"
+					type="submit"
 					class="w-full py-3 px-4 tracking-wider text-sm rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
-                    disabled={disableAdding || !cuiText || !nameText || !lastText || !passwordText}
+                    disabled={disableAdding || !cuiFull || !nameText || !lastText || !passwordText}
 				>
-					Create an account
+					Crear cuenta
 				</button>
 			</div>
 			<p class="text-gray-800 text-sm mt-6 text-center">
-				Already have an account?
-                <a
-					href="javascript:void(0);"
+				¿Tiene cuenta existente?
+                <Link
+					to='/'
 					class="text-blue-600 font-semibold hover:underline ml-1"
+					onclick={() => clearInputs()}
                 >
-                    Login here
-                </a>
+                    Inicie Seción aquí
+				</Link>
 			</p>
 		</form>
 	</div>
