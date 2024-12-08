@@ -1,13 +1,15 @@
-const { findAll,getSaldo,getTransaccionData } = require('./clientes/client.controller.get')
-const { deposito,retiro,prestamo } = require('./clientes/client.controller.put')
+const { findAll,getSaldo,getTransaccionData,getMisPrestamos,getMyData } = require('./clientes/client.controller.get')
+const { deposito,retiro,pagarPrestamo } = require('./clientes/client.controller.put')
 const { hacerPrestamo } = require('./clientes/client.controller.post')
 
 module.exports ={
     findAll,
     getSaldo,
     getTransaccionData,
+    getMisPrestamos,
     deposito,
     retiro,
-    prestamo,
-    hacerPrestamo
+    pagarPrestamo,
+    hacerPrestamo,
+    getMyData
 };
