@@ -1,14 +1,16 @@
 <script>
+	import { PathBackend } from "../../stores/host";
+
     let buscarPor = $state('cui');
     let inputBusqueda = $state();
     let usuario = $state(null);
     let mostrarTransacciones = $state(false);
     let mensajeError = $state('');
     let cuiFull = $state(false);
-    let datosUsuarios = $state([]);
+    let datosUsuarios = $state([]);  // Aquí estamos usando el $state para no modificarlo.
 
-    function buscarUsuario() {
-        mensajeError = '';
+    async function buscarUsuario() {
+        mensajeError = ''; // No hace falta cambiar esto, pero recuerda que no es reactivo si usas $state de esta forma
         usuario = null;
         mostrarTransacciones = false;
 
@@ -17,14 +19,34 @@
             return;
         }
 
-        usuario = datosUsuarios.find(
-            (u) =>
-                (buscarPor === 'cui' && u.cui === inputBusqueda) ||
-                (buscarPor === 'numeroCuenta' && u.cuenta_id.toString() === inputBusqueda)
-        );
+        try {
+            const res = await fetch(`${PathBackend}/personal/userData/${inputBusqueda}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
 
-        if (!usuario) {
-            mensajeError = 'Usuario no encontrado.';
+            if (!res.ok) { 
+                throw new Error('Error en la solicitud');
+            }
+
+            const data = await res.json();
+
+            datosUsuarios = [data];
+
+            usuario = datosUsuarios.find(
+                (u) =>
+                    (buscarPor === 'cui' && u.cui === inputBusqueda) ||
+                    (buscarPor === 'numeroCuenta' && u.cuenta_id.toString() === inputBusqueda)
+            );
+
+            if (!usuario) {
+                mensajeError = 'Usuario no encontrado.';
+            }
+
+        } catch (err) {
+            console.log(err);
         }
     }
 
@@ -36,7 +58,7 @@
         const value = event.target.value;
 
         if ((buscarPor === 'cui') && (value.length > 13)) {
-			inputBusqueda = value.slice(0, 13);
+            inputBusqueda = value.slice(0, 13);
         } else if (buscarPor === 'numeroCuenta') {
             inputBusqueda = value;
         }
