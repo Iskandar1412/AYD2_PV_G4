@@ -39,11 +39,11 @@
         </div>
         <div class="text-sm font-semibold text-gray-100">{$user.nombres.split(' ')[0]}</div>
         <div class="text-xs text-gray-300">
-            {#if $user.rol === 1}
+            {#if $user.rol === 'admin'}
                 Administrador
-            {:else if $user.rol === 2}
+            {:else if $user.rol === 'personal'}
                 Personal
-            {:else if $user.rol === 3}
+            {:else if $user.rol === 'usuario'}
                 Usuario
             {/if}
         </div>
