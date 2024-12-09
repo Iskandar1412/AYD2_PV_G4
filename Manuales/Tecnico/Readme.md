@@ -142,6 +142,39 @@ el numero de cuenta, el tipo de transaccion, fecha y hora, monto, nombre y la fi
 
 ## Endpoints
 
+### Usuarios
+- GET /validarUsuario: Permite validar la existencia de un usuario en el sistema para autenticación.
+- POST /registrarUsuario: Permite registrar nuevos usuarios, añadiendo datos como cui, nombres, apellidos, password, fecha_creación y el rol (admin, personal o usuario).
+
+
+### Clientes
+GET Endpoints:
+- /saldo: Recupera el saldo actual del usuario autenticado desde la tabla cuenta.
+- /comprobante: Obtiene los datos de una transacción específica desde la tabla transaccion.
+- /prestamos: Devuelve los préstamos asociados al usuario autenticado desde la tabla prestamo.
+- /misDatos: Proporciona información personal y posiblemente financiera del usuario autenticado.
+
+PUT Endpoints:
+- /deposito: Registra un depósito en la cuenta del usuario en la tabla deposito y actualiza su saldo.
+- /retiro: Registra un retiro en la tabla retiro y reduce el saldo del usuario.
+- /pago_prestamo: Permite realizar pagos a un préstamo registrado en la tabla prestamo.
+
+POST Endpoints:
+- /hacerPrestamo: Crea una nueva entrada en la tabla prestamo asociada a la cuenta del usuario y ajusta el saldo.
+
+### Personal
+GET Endpoints:
+- /userData: Recupera datos personales de un usuario específico, probablemente utilizado por el personal administrativo.
+- /userSaldo: Obtiene el saldo de un usuario en particular.
+
+POST Endpoints:
+- /pagoServicio: Registra pagos de servicios en la tabla servicio y crea una transacción asociada.
+
 ## Configuración del Entorno
 
 ## Instalación y Despliegue
+La instalación se divide en tres pasos, del lado del frontend nos dirigimos a la carpeta ubicado el `package.json` y con los programas instalando previamente ejecutamos el comando:
+~~~
+npm install
+~~~
+en el backend se tendrá que realizar el mismo paso que el frontend ya que las tecnologicas son las mismas. Por último y tercer paso esta la base de datos que se puede 
