@@ -8,7 +8,7 @@
 	import ContentHome from './attributes/ContentHome.svelte';
 	import { sidebarOpen } from '../stores/sidevar';
 	onMount(() => {
-		console.log($user.no_cuenta);
+		console.log($user.id);
 		
 	});
 

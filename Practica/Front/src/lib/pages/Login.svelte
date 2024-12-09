@@ -2,7 +2,6 @@
 	import { navigate, Link } from "svelte-routing";
 	import { isAuthenticated, loginUser } from "../stores/auth";
 	import { onMount } from "svelte";
-	import { PathBackend } from "../stores/host";
 
 	onMount(() => {
 		if($isAuthenticated) {
@@ -30,6 +29,12 @@
 		passwordText = ''
 	}
 
+	let usuariosquemados = $state([
+		{ no: 1254, id: 1, cui: '1111111111111', pass: '123', nombres: 'Jose pablo', apellidos: 'bats', rol: 3 },
+		{ no: 1255, id: 2, cui: '2222222222222', pass: '123', nombres: 'iskandar', apellidos: 'urs', rol: 1 },
+		{ no: 1255, id: 2, cui: '3333333333333', pass: '123', nombres: 'pau', apellidos: 'urs', rol: 2 },
+	])
+
 	function handleInput(event) {
 		const value = event.target.value;
 		if(value.length > 13) {
@@ -43,38 +48,19 @@
 		event.preventDefault();
 		submit = true
 		// console.log(cuiText, passwordText)
+		const usuario = usuariosquemados.find(
+			(user) => user.cui === cuiText.toString() && user.pass === passwordText
+		)
 		
-		fetch(`${PathBackend}/user/validarUsuario/${cuiText}/${passwordText}`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
-		.then(res => {
-			if(!res.ok) {
-				throw new Error('Error en la solicitud')
-			}
-			return res.json()
-		})
-		.then(data => {
-			if(data) {
-				loginUser(data)
-				navigate('/home')
-				clearInputs()
-				submit = false
-			} else {
-				clearInputs()
-				submit = false
-				throw new Error('Error en el inicio de seción')
-			}
-		})
-		.catch(err => {
-			clearInputs()
-			submit = false
-			alert(err)
-			navigate('/')	
-		})
-		
+		if (usuario) {
+			loginUser(usuario)
+			navigate('/home')
+		} else {
+			alert('Usuario no existente')
+			navigate('/')
+		}
+		clearInputs()
+		submit = false
 	}
 </script>
 
