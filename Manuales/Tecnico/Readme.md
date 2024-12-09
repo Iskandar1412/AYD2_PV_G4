@@ -18,41 +18,47 @@ tambien ofrecer una forma inovadora en la manera en que se realizan las diferent
 
 ![CDU](./img/DiagramaCDU.jpg)
 
+### Descomposicion Casos de Uso de Alto Nivel
+
+![CDU](./img/DiagramaCDU2.jpg)
+
+![CDU](./img/DiagramaCDU1.jpg)
+
 ## Requerimientos Funcionales
 
-**Inicio de sesion**: El usuario puede ingresar a la plataforma ingresando su CUI y contraseña.
+1. **Inicio de sesion**: El usuario puede ingresar a la plataforma ingresando su CUI y contraseña.
 
-**Registro de usuario**: Los usuarios pueden registrarse en el aplicativo ingresando su informacion persoanal.
+2. **Registro de usuario**: Los usuarios pueden registrarse en el aplicativo ingresando su informacion persoanal.
 
-**Pago de servicios**: Los encargados pueden aplicar pagos de diferentes diferentes servicios dentro del plataforma en nombre del cliente.
+3. **Pago de servicios**: Los encargados pueden aplicar pagos de diferentes diferentes servicios dentro del plataforma en nombre del cliente.
 
-**Pago de prestamos**: Los clientes pueden realizar pagos de prestamos de manera parcial o total.
+4. **Pago de prestamos**: Los clientes pueden realizar pagos de prestamos de manera parcial o total.
 
-**Buscar cuentas**: Los encargados pueden realizar busquedas de clientes por medio del CUI del cliente o por medio del numero de cuenta del cliente.
+5. **Buscar cuentas**: Los encargados pueden realizar busquedas de clientes por medio del CUI del cliente o por medio del numero de cuenta del cliente.
 
-**Consultar cliente**: Los encargados pueden realizar la busqueda de clientes y visualizar la informacion de contacto e historial de transacciones.
+6. **Consultar cliente**: Los encargados pueden realizar la busqueda de clientes y visualizar la informacion de contacto e historial de transacciones.
 
-**Consultar saldo**: Los clientes pueden consultar los saldos de sus cuentas bancarias.
+7. **Consultar saldo**: Los clientes pueden consultar los saldos de sus cuentas bancarias.
 
-**Generar comprobante**: Los usuarios pueden obtener un reporte PDF de sus transacciones bancarias.
+8. **Generar comprobante**: Los usuarios pueden obtener un reporte PDF de sus transacciones bancarias.
 
-**Retiro de dinero**: Los clientes pueden realizar retiros de dinero de sus cuentas bancarias.
+9. **Retiro de dinero**: Los clientes pueden realizar retiros de dinero de sus cuentas bancarias.
 
-**Deposito de dinero**: Los clientes pueden realizar depositos de dinero en sus cuentas bancarias.
+10. **Deposito de dinero**: Los clientes pueden realizar depositos de dinero en sus cuentas bancarias.
 
 ## Requerimientos No Funcionales
 
-**Seguridad de la informacion**: La informacion de los usuarios no debe ser comprometida en ningun momento.
+1. **Seguridad de la informacion**: La informacion de los usuarios no debe ser comprometida en ningun momento.
 
-**Cifrado**: Toda la informacion de la plataforma al ser transmitida debe estar cifrada.
+2. **Cifrado**: Toda la informacion de la plataforma al ser transmitida debe estar cifrada.
 
-**Interfaz responsive**: La interfaz de la plataforma debe adaptarse a las pantallas de diferentes dispositivo.
+3. **Interfaz responsive**: La interfaz de la plataforma debe adaptarse a las pantallas de diferentes dispositivo.
 
-**Concurrencia**: La plataforma debe manejar una gran cantidad de transacciones en paralelo.
+4. **Concurrencia**: La plataforma debe manejar una gran cantidad de transacciones en paralelo.
 
-**Prevención de fraudes**: La plataforma debe poder identificar anomalias de fraude en las transacciones.
+5. **Prevención de fraudes**: La plataforma debe poder identificar anomalias de fraude en las transacciones.
 
-**Accesibilidad**: La interfaz de la plataforma debe ser intuitiva y facil de utilizar.
+6. **Accesibilidad**: La interfaz de la plataforma debe ser intuitiva y facil de utilizar.
 
 ## Casos de Uso Expandidos
 
@@ -171,6 +177,14 @@ POST Endpoints:
 - /pagoServicio: Registra pagos de servicios en la tabla servicio y crea una transacción asociada.
 
 ## Configuración del Entorno
+
+Para la configuración del entorno se necesitan realizar las siguientes instalaciones de forma local:
+
+Se necesita instalar `Nodejs` en su version `18.18.0`, asi como `npm` en su version mas reciente. Adicional a ello se necesita instalar las siguientes liberias con npm: express, mysql2, cors, promise y express, compatibles con la version de node anteriormente mencionada, asi como los paquetes de `Svelte` en su version 5.
+
+Para el entorno de la base de datos se necesita instalar y configurar `Docker` y `Docker Compose` en su ultima version, con ellos se necesita descargar la imagen `latest` de `mysql` de docker hub.
+
+Cumpliendo los requisitos posteriormente mencionados se puede proceder con la instalacion y despliegue de la apliacion.
 
 ## Instalación y Despliegue
 
