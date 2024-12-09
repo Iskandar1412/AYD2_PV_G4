@@ -33,7 +33,6 @@ async function registrarUsuario(cui, nombres, apellidos, contrasenia, currentDat
 
 async function crearCuenta(cui){
     try{
-        console.log('Creacioncuentausu')
         const [rows] = await pool.query(`CALL registrar_cuenta(?,?)`, [cui,0.00]);
         return rows;
     } catch (error) {
