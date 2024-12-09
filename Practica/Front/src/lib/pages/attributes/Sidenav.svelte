@@ -5,11 +5,11 @@ import { isAuthenticated, user } from "../../stores/auth";
 	import { sidebarOpen } from "../../stores/sidevar";
     let tipo = $state()
     $effect.pre(() => {
-        if($user.rol === 1) {
+        if($user.rol === 'admin') {
             tipo = "ADMINISTRADOR"
-        } else if ($user.rol === 2) {
+        } else if ($user.rol === 'personal') {
             tipo = "PERSONAL"
-        } else if ($user.rol === 3) {
+        } else if ($user.rol === 'usuario') {
             tipo = "USUARIO"
         }
     })
@@ -50,7 +50,7 @@ import { isAuthenticated, user } from "../../stores/auth";
                 <span class="text-sm">Dashboard</span>
             </Link>
         </li>
-        {#if $user.rol === 1 || $user.rol === 2}
+        {#if $user.rol === 'admin' || $user.rol === 'personal'}
         <li class="mb-1 group">
             <button
                 class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md"
@@ -88,7 +88,7 @@ import { isAuthenticated, user } from "../../stores/auth";
                 <i class="ri-arrow-right-s-line ml-auto" class:rotate-90={activeMenu === 'gestiones'}></i>
             </button>
             <ul class="pl-7 mt-2" class:hidden={activeMenu !== 'gestiones'}>
-                {#if $user.rol === 1 || $user.rol === 2}
+                {#if $user.rol === 'admin' || $user.rol === 'personal'}
                     <li class="mb-4">
                         <Link
                             to="/servicios"
@@ -97,14 +97,14 @@ import { isAuthenticated, user } from "../../stores/auth";
                             Pago de Servicio
                         </Link>
                     </li>
-                    <li class="mb-4">
+                    <!-- <li class="mb-4">
                         <Link
                             to="/saldo"
                             class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3"
                         >
                             Mostrar Saldo
                         </Link>
-                    </li>
+                    </li> -->
                     <li class="mb-4">
                         <Link
                             to="/prestamos"
@@ -121,7 +121,7 @@ import { isAuthenticated, user } from "../../stores/auth";
                             Retiro/Depósito
                         </Link>
                     </li>
-                {:else if $user.rol === 3}
+                {:else if $user.rol === 'usuario'}
                     <li class="mb-4">
                         <Link
                             to="/prestamos"

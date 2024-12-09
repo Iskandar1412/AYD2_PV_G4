@@ -7,9 +7,9 @@
 
 <!-- Content -->
 <div class="p-6">
-	{#if $user.rol === 1 || $user.rol === 2}
+	{#if $user.rol === 'admin' || $user.rol === 'personal'}
 		<AdminRetDep />
-	{:else if $user.rol === 3}
+	{:else if $user.rol === 'usuario'}
 		<UserRetDep />
 	{/if}
 </div>
