@@ -1,6 +1,6 @@
 <script>
+	import { onMount } from "svelte";
 	import { Link, navigate } from "svelte-routing";
-	import { PathBackend } from "../stores/host";
 
 	let cui = $state();
     let cuiText = $state();
@@ -38,28 +38,10 @@
     async function handleSubmitUser (event) {
         event.preventDefault();
         submit = true;
-        await fetch(`${PathBackend}/user/registrarUsuario`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ cui: cuiText, nombres: nameText, apellidos: lastText, contrasenia: passwordText, rol: 'usuario'  })
-		})
-		.then(response => response.json())
-		.then(data => {
-			if(data.success) {
-				alert("usuario creado exitosamente")
-				clearInputs();
-				submit = false;
-				navigate('/')
-			} else {
-				throw new Error('Error: Usuario ya existente por CUI')
-			}
-		})
-		.catch((error) => {
-			alert(error)
-			submit = false;
-		})
+        console.log(cuiText, nameText, lastText, passwordText);
+        clearInputs();
+        submit = false;
+		navigate('/')
     }
 </script>
 

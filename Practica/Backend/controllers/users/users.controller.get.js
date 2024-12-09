@@ -8,6 +8,7 @@ async function comprobarUsuario(cui, contrasenia) {
         );
 
         const result = rows[0][0]?.resultado;
+
         if (result) {
             return result;
         } else {
@@ -20,10 +21,9 @@ async function comprobarUsuario(cui, contrasenia) {
 }
 
 exports.validarUsuario = async (req, res) => {
-    const cuiUsuario = req.params.cui
-    const passUsuario = req.params.pass
+    const data = req.body;
     try {
-        const result = await comprobarUsuario(cuiUsuario, passUsuario);
+        const result = await comprobarUsuario(data.cui, data.contrasenia);
         //se envía un json con el parametro status y valor "success" para indicar que la contraseña es la adecuada
         res.status(200).json(result);
     } catch (error) {

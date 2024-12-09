@@ -114,7 +114,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							{#each obtenerTransaccionesOrdenadas() as transaccion}
+							{#each usuario.transacciones.sort((a, b) => a.trans_id - b.trans_id) as transaccion}
 								<tr>
 									<td class="border px-4 py-2">{transaccion.trans_id}</td>
 									<td class="border px-4 py-2">{transaccion.tipo}</td>

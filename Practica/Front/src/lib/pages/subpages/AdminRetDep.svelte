@@ -115,12 +115,14 @@
 
 
 <style lang="scss">
-    .button-getsion {
-        button {
+    div {
+        .button-getsion {
+            button {
 
-            &:disabled {
-                opacity: 0.4;
-                cursor: not-allowed;
+                &:disabled {
+                    opacity: 0.4;
+                    cursor: not-allowed;
+                }
             }
         }
     }
