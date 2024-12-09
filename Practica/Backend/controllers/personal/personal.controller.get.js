@@ -60,3 +60,32 @@ exports.getUserSaldo = async(req,res) =>{
         res.status(500).json({ error: 'Error al obtener el saldo del usuario: ' + error.message });
     }
 }
+
+async function usuarios() {
+    try{
+        const [rows] = await pool.query(`
+            CALL contar_usuarios_por_rol()`
+        );
+
+        const result = rows[0][0]?.resultado;
+
+        if (result) {
+            return result;
+        } else {
+            console.log(result);
+            throw new Error('Resultado inesperado del procedimiento');
+        }
+
+    } catch (error) {
+        throw new Error('Error: '+ error.message)
+    }
+}
+
+exports.getUsuarios = async(req,res) => {
+    try {
+        const result = await usuarios();
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener el saldo del usuario: ' + error.message });
+    }
+}
