@@ -74,7 +74,7 @@
 
 	<ul class="ml-auto flex items-center">
         <!-- Menú de Búsqueda -->
-        {#if $user.rol === 1 || $user.rol === 2}
+        {#if $user.rol === 'admin' || $user.rol === 'personal'}
             <li class="mr-1 dropdown">
                 <button
                     bind:this={searchButton}
@@ -146,9 +146,9 @@
                 <div class="p-2 md:block text-left">
                     <h2 class="text-sm font-semibold text-gray-800">{$user.nombres}</h2>
                     <p class="text-xs text-gray-500">
-                        {#if $user.rol === 1} Administrador
-                        {:else if $user.rol === 2} Personal
-                        {:else if $user.rol === 3} Usuario {/if}
+                        {#if $user.rol === 'admin'} Administrador
+                        {:else if $user.rol === 'personal'} Personal
+                        {:else if $user.rol === 'usuario'} Usuario No. {$user.no_cuenta} {/if}
                     </p>
                 </div>
             </button>
