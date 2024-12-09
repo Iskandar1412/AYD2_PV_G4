@@ -146,7 +146,6 @@ el numero de cuenta, el tipo de transaccion, fecha y hora, monto, nombre y la fi
 - GET /validarUsuario: Permite validar la existencia de un usuario en el sistema para autenticación.
 - POST /registrarUsuario: Permite registrar nuevos usuarios, añadiendo datos como cui, nombres, apellidos, password, fecha_creación y el rol (admin, personal o usuario).
 
-
 ### Clientes
 GET Endpoints:
 - /saldo: Recupera el saldo actual del usuario autenticado desde la tabla cuenta.
