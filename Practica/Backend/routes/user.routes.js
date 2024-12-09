@@ -3,10 +3,10 @@ const router = require('express').Router()
 
 
 //GETS
-router.get('/validarUsuario', validarUsuario)
+router.get('/validarUsuario/:cui/:pass', validarUsuario)
 
 // POST
-router.post('/registrarUsuario',createUser);
+router.post('/registrarUsuario', createUser);
 
 
 module.exports = router;    

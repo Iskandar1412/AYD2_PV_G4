@@ -1,20 +1,118 @@
 <script>
+	import jsPDF from "jspdf";
+	import { user } from "../../stores/auth";
+	import { PathBackend } from "../../stores/host";
+
 	let gestion = $state('deposito');
 	let numeroCuenta = $state();
 	let monto = $state();
 	let metodoDeposito = $state('');
 	let tipoRetiro = $state('');
 
-	function realizarGestion() {
-		console.log('Datos de la gestión:');
-		console.log(`Gestión: ${gestion === 'deposito' ? 'Depósito' : 'Retiro'}`);
-		console.log(`Número de cuenta: ${numeroCuenta}`);
-		console.log(`Monto: ${monto}`);
-		if (gestion === 'deposito') {
-			console.log(`Método de depósito: ${metodoDeposito}`);
-		} else if (gestion === 'retiro') {
-			console.log(`Tipo de retiro: ${tipoRetiro}`);
-		}
+    function generacionPDF(message) {
+        try {
+            const doc = new jsPDF();
+            doc.setFont("helvetica", "normal");
+            doc.text(new Date().toString(), 10, 10);
+
+            doc.setFontSize(16);
+            doc.setFont("helvetica", "bold");
+            doc.text(gestion === 'deposito' ? "Comprobante Deposito" : "Comprobante Retiro", 105, 20, { align: "center" });
+
+            doc.setFontSize(12);
+            doc.text("Número de cuenta:", 10, 40);
+            doc.setFont("helvetica", "normal");
+            doc.text(numeroCuenta.toString(), 60, 40);
+
+            doc.setFont("helvetica", "bold");
+            doc.text("Tipo de transacción:", 10, 50);
+            doc.setFont("helvetica", "normal");
+            const tipoTransaccion = gestion === 'deposito' ? 'Deposito' : 'Retiro';
+            doc.text(tipoTransaccion, 60, 50);
+
+            doc.setFont("helvetica", "bold");
+            doc.text("Fecha y hora:", 10, 60);
+            doc.setFont("helvetica", "normal");
+            doc.text(message.fecha , 60, 60);
+
+            doc.setFont("helvetica", "bold");
+            doc.text("Monto:", 10, 70);
+            doc.setFont("helvetica", "normal");
+            doc.text(monto.toString(), 60, 70);
+            if ($user?.nombres && $user.nombres !== 'NULL') {
+                doc.setFont("helvetica", "bold");
+                doc.text("Nombre del empleado:", 10, 80);
+                doc.setFont("helvetica", "normal");
+                doc.text(`${$user.nombres} ${$user.apellidos}`, 60, 80);
+            }
+
+            let cons = gestion === 'deposito' ? message.deposito_id : message.retiro_id
+            doc.save(`Comprobante_${cons.toString()}.pdf`);
+        } catch (error) {
+            console.error("Error generando el PDF:", error);
+            alert("Error generando el PDF. Por favor, verifica los datos.");
+        }
+    }
+
+	async function realizarGestion() {
+        if(gestion === 'deposito') {
+            // console.log({ cui_enc: $user.cui, cuenta: numeroCuenta, monto: monto, idDeposito: metodoDeposito === 'bancario' ? 2 : 1 })
+            fetch(`${PathBackend}/client/deposito`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ cui_enc: $user.cui, cuenta: numeroCuenta, monto: monto, idDeposito: metodoDeposito === 'bancario' ? 2 : 1 })
+            })
+            .then(res => {
+                if(!res.ok) {
+                    throw new Error('Eror en gestion')
+                }
+                return res.json()
+            })
+            .then(data => {
+                console.log(data.status)
+                if(data.status === 'error') {
+                    throw new Error('Error en la petición, cuenta no existente')
+                } else {
+                    alert('Petición aceptada')
+                    generacionPDF(data)
+                    // console.log('asfasdf')
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                alert(err)
+            })
+        } else if(gestion === 'retiro') {
+            fetch(`${PathBackend}/client/retiro`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ cui_enc: $user.cui, cuenta: numeroCuenta, monto: monto, idRetiro: tipoRetiro === 'cajero' ? 2 : 1 })
+            })
+            .then(res => {
+                if(!res.ok) {
+                    throw new Error('Eror en gestion')
+                }
+                return res.json()
+            })
+            .then(data => {
+                console.log(data)
+                if(data.status === 'error') {
+                    throw new Error('Error en la petición, cuenta no existente')
+                } else {
+                    alert('Petición aceptada')
+                    generacionPDF(data)
+                    // console.log('asfasdf')
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                alert(err)
+            })
+        }
 	}
 </script>
 
@@ -82,6 +180,7 @@
                 >
                     <option value="">Seleccionar</option>
                     <option value="cajero">Cajero Automático</option>
+                    <option value="ventanilla">Ventanilla</option>
                 </select>
             </div>
         {/if}

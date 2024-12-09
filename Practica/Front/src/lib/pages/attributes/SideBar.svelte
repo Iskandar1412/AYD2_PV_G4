@@ -30,9 +30,9 @@
 
     <!-- Navigation Buttons -->
     <div class="flex flex-col items-center space-y-4">
-        {#if $user.rol === 1 || $user.rol === 2}
+        {#if $user.rol === 'admin' || $user.rol === 'personal'}
             asdf    
-        {:else if $user.rol === 3}
+        {:else if $user.rol === 'usuario'}
             <div
                 use:tippy={{ content: 'Home', placement: 'right', theme: 'light' }}
             >
