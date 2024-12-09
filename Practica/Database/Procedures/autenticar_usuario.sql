@@ -2,9 +2,12 @@ create
     definer = root@`%` procedure autenticar_usuario(IN p_cui bigint, IN p_password varchar(200))
 BEGIN
     DECLARE v_rol VARCHAR(50);
+    DECLARE v_nombres VARCHAR(50);
+    DECLARE v_apellidos VARCHAR(50);
     DECLARE v_password_hash VARCHAR(200);
     DECLARE v_password_input_hash VARCHAR(200);
     DECLARE v_error_message VARCHAR(255);
+    DECLARE v_cuenta_id INT;
 
     -- Manejo de errores
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -24,8 +27,12 @@ BEGIN
     END;
 
     -- Verificar si el usuario existe y obtener su contraseña almacenada
-    SELECT password, rol INTO v_password_hash, v_rol
+    SELECT password, rol, nombres, apellidos INTO v_password_hash, v_rol, v_nombres, v_apellidos
     FROM usuario
+    WHERE cui = p_cui;
+
+    SELECT cuenta_id INTO v_cuenta_id
+    FROM cuenta
     WHERE cui = p_cui;
 
     -- Si el usuario no existe, retornar error
@@ -54,4 +61,3 @@ BEGIN
     ) AS resultado;
 
 END;
-

@@ -2,8 +2,8 @@ const { findUser,getUserSaldo,pagarServicio,getUsuarios } = require('../controll
 const router = require('express').Router()
 
 // GETS
-router.get('/userData',findUser);
-router.get('/userSaldo',getUserSaldo);
+router.get('/userData/:cui',findUser);
+router.get('/userSaldo/:ncuenta',getUserSaldo);
 router.get('/totalUsuarios',getUsuarios)
 
 // POST
