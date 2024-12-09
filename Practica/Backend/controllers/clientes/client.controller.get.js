@@ -26,9 +26,8 @@ async function obtenerSaldo(cuenta){
 }
 
 exports.getSaldo = async(req,res) =>{
-    const data = req.body;
     try {
-        const result = await obtenerSaldo(data.cuenta);
+        const result = await obtenerSaldo(req.params.cuenta);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener el saldo del usuario: ' + error.message });
@@ -56,9 +55,8 @@ async function misPrestamos(cuenta){
 }
 
 exports.getMisPrestamos = async(req,res) => {
-    const data = req.body;
     try {
-        const result = await misPrestamos(data.cuenta);
+        const result = await misPrestamos(req.params.cuenta);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener los prestamos: ' + error.message });
@@ -86,9 +84,8 @@ async function transacciones(num_trans){
 }
 
 exports.getTransaccionData = async(req,res) =>{
-    const data = req.body;
     try {
-        const result = await transacciones(data.numTrans);
+        const result = await transacciones(req.params.ntrans);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener los prestamos: ' + error.message });
@@ -116,9 +113,8 @@ async function misDatos(cui){
 }
 
 exports.getMyData = async(req,res) => {
-    const data = req.body;
     try {
-        const result = await misDatos(data.cui);
+        const result = await misDatos(req.params.cui);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener los datos del usuario: ' + error.message });

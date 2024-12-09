@@ -1,99 +1,97 @@
 <script>
-	let buscarPor = $state('cui');
-	let inputBusqueda = $state();
-	let usuario = $state(null);
-	let mostrarTransacciones = $state(false);
-	let mensajeError = $state('');
+	import { PathBackend } from "../../stores/host";
 
-	const datosUsuarios = [
-		{
-			cui: '3107320340407',
-			saldo: 2805,
-			nombre: 'Camilo Ernesto',
-			apellido: 'Sincal Sipac',
-			cuenta_id: 1,
-			transacciones: [
-				{
-					tipo: 'deposito',
-					fecha: '2024-12-06 10:00:00',
-					monto: 1000,
-					trans_id: 1,
-					encargado: 'Camilo Ernesto'
-				},
-				{
-					tipo: 'deposito',
-					fecha: '2024-12-08 00:00:00',
-					monto: 600,
-					trans_id: 2,
-					encargado: 'Camilo Ernesto'
-				},
-				{
-					tipo: 'deposito',
-					fecha: '2024-12-08 00:00:00',
-					monto: 200,
-					trans_id: 3,
-					encargado: 'Camilo Ernesto'
-				},
-				{
-					tipo: 'retiro',
-					fecha: '2024-12-08 00:00:00',
-					monto: 300,
-					trans_id: 4,
-					encargado: 'Camilo Ernesto'
-				}
-			]
-		}
-	];
+    let buscarPor = $state('cui');
+    let inputBusqueda = $state();
+    let usuario = $state(null);
+    let mostrarTransacciones = $state(false);
+    let mensajeError = $state('');
+    let cuiFull = $state(false);
+    let datosUsuarios = $state([]);  // Aquí estamos usando el $state para no modificarlo.
 
-	function buscarUsuario() {
-		mensajeError = '';
-		usuario = null;
-		mostrarTransacciones = false;
+    async function buscarUsuario() {
+        mensajeError = ''; // No hace falta cambiar esto, pero recuerda que no es reactivo si usas $state de esta forma
+        usuario = null;
+        mostrarTransacciones = false;
 
-		if (!inputBusqueda) {
-			mensajeError = 'Por favor, ingrese un valor para buscar.';
-			return;
-		}
+        if (!inputBusqueda) {
+            mensajeError = 'Por favor, ingrese un valor para buscar.';
+            return;
+        }
 
-		usuario = datosUsuarios.find(
-			(u) =>
-				(buscarPor === 'cui' && u.cui === inputBusqueda) ||
-				(buscarPor === 'numeroCuenta' && u.cuenta_id.toString() === inputBusqueda)
-		);
+        try {
+            const res = await fetch(`${PathBackend}/personal/userData/${inputBusqueda}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
 
-		if (!usuario) {
-			mensajeError = 'Usuario no encontrado.';
-		}
-	}
+            if (!res.ok) { 
+                throw new Error('Error en la solicitud');
+            }
 
-	function obtenerTransaccionesOrdenadas() {
-		return usuario ? [...usuario.transacciones].sort((a, b) => a.trans_id - b.trans_id) : [];
-	}
+            const data = await res.json();
+
+            datosUsuarios = [data];
+
+            usuario = datosUsuarios.find(
+                (u) =>
+                    (buscarPor === 'cui' && u.cui === inputBusqueda) ||
+                    (buscarPor === 'numeroCuenta' && u.cuenta_id.toString() === inputBusqueda)
+            );
+
+            if (!usuario) {
+                mensajeError = 'Usuario no encontrado.';
+            }
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    function obtenerTransaccionesOrdenadas() {
+        return usuario ? [...usuario.transacciones].sort((a, b) => a.trans_id - b.trans_id) : [];
+    }
+
+    function handleInput(event) {
+        const value = event.target.value;
+
+        if ((buscarPor === 'cui') && (value.length > 13)) {
+            inputBusqueda = value.slice(0, 13);
+        } else if (buscarPor === 'numeroCuenta') {
+            inputBusqueda = value;
+        }
+    }
 </script>
 
 <div class="p-6">
 	<div class="gap-6 mb-6">
 		<div class="flex gap-4 mb-6">
-			<select
-				bind:value={buscarPor}
-				class="p-2 rounded border border-gray-300 focus:ring focus:ring-indigo-200"
-			>
-				<option value="cui">Buscar por CUI</option>
-				<option value="numeroCuenta">Buscar por Número de Cuenta</option>
-			</select>
-			<input
-				type="text"
-				bind:value={inputBusqueda}
-				placeholder="Ingrese el valor a buscar"
-				class="p-2 rounded border border-gray-300 flex-1 focus:ring focus:ring-indigo-200"
-			/>
-			<button
-				onclick={buscarUsuario}
-				class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-			>
-				Buscar
-			</button>
-		</div>
+            <!-- Selector de búsqueda -->
+            <select
+                bind:value={buscarPor}
+                class="p-2 rounded border border-gray-300 focus:ring focus:ring-indigo-200"
+            >
+                <option value="cui">Buscar por CUI</option>
+                <option value="numeroCuenta">Buscar por Número de Cuenta</option>
+            </select>
+
+            <input
+                type="number"
+                bind:value={inputBusqueda}
+                oninput={handleInput}
+                placeholder="Ingrese el valor a buscar"
+                class="p-2 rounded border border-gray-300 flex-1 focus:ring focus:ring-indigo-200"
+            />
+
+            <button
+                onclick={buscarUsuario}
+                class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+                Buscar
+            </button>
+        </div>
 
 		{#if mensajeError}
 			<div class="p-4 bg-red-100 text-red-700 rounded mb-6">
