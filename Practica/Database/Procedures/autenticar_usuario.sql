@@ -56,8 +56,8 @@ BEGIN
         'rol', v_rol,
         'no_cuenta', v_cuenta_id,
         'nombres', v_nombres,
-        'apellidos', v_apellidos
+        'apellidos', v_apellidos,
+        'cui', p_cui
     ) AS resultado;
 
 END;
-
