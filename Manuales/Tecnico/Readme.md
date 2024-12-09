@@ -173,8 +173,49 @@ POST Endpoints:
 ## Configuración del Entorno
 
 ## Instalación y Despliegue
-La instalación se divide en tres pasos, del lado del frontend nos dirigimos a la carpeta ubicado el `package.json` y con los programas instalando previamente ejecutamos el comando:
-~~~
-npm install
-~~~
-en el backend se tendrá que realizar el mismo paso que el frontend ya que las tecnologicas son las mismas. Por último y tercer paso esta la base de datos que se puede 
+
+#### Requisitos Previos
+- **Herramientas Necesarias**:
+  - Node.js y npm
+  - Docker y Docker Compose
+- **Acceso a Scripts**: Asegúrese de tener permisos adecuados para ejecutar los scripts y levantar los contenedores.
+- 
+La instalación y despliegue del sistema se realiza en tres pasos: configuración del frontend, configuración del backend y despliegue de la base de datos. A continuación, se detallan los pasos necesarios:
+
+#### Instalación del Frontend
+1. Navegue a la carpeta que contiene el archivo `package.json` correspondiente al frontend.
+2. Asegúrese de tener instaladas previamente las herramientas necesarias como Node.js y npm.
+3. Ejecute el siguiente comando para instalar las dependencias:
+   ```bash
+   npm install
+   ```
+#### Instalación del Backend
+1. Similar al frontend, diríjase a la carpeta del backend donde se encuentra su archivo `package.json`.
+2. Ejecute nuevamente el comando:
+   ```bash
+   npm install
+   ```
+   Esto instalará todas las dependencias requeridas, ya que tanto el frontend como el backend utilizan tecnologías similares.
+#### Configuración de la Base de Datos
+1. Asegúrese de que Docker esté instalado y configurado en su entorno.
+2. Levante el contenedor correspondiente a la base de datos ejecutando:
+   ```bash
+   docker-compose -f docker-compose.yaml up -d
+   ```
+3. Una vez que el contenedor esté en ejecución, ejecute el script completo para configurar la base de datos. Este script está ubicado en la ruta `practica/Database/script_complete.sql`.
+   
+### Despliegue del Sistema
+
+#### Despliegue del Frontend y Backend
+1. Para iniciar tanto el frontend como el backend, utilice el comando:
+   ```bash
+   npm run dev
+   ```
+   Este comando ejecutará el script definido en el archivo `package.json` para iniciar el servidor de desarrollo.
+
+#### Verificación de Contenedores
+1. Para confirmar que los contenedores están corriendo correctamente, utilice el comando:
+   ```bash
+   docker ps
+   ```
+   Esto mostrará los contenedores activos y sus puertos de acceso.
