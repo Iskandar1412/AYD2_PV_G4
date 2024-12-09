@@ -8,7 +8,7 @@
 	import { sidebarOpen } from '../stores/sidevar';
 	import ContentSaldo from './subpages/ContentSaldo.svelte';
 	onMount(() => {
-		console.log($user.id);
+		console.log($user.no_cuenta);
 		
 	});
 

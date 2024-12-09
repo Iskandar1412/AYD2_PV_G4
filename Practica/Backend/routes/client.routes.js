@@ -3,10 +3,10 @@ const { findAll,getSaldo,getTransaccionData,deposito,retiro,hacerPrestamo,pagarP
 const router = require('express').Router()
 
 // GETS
-router.get('/saldo',getSaldo);
-router.get('/comprobante',getTransaccionData);
-router.get('/prestamos',getMisPrestamos)
-router.get('/misDatos',getMyData)
+router.get('/saldo/:cuenta',getSaldo);
+router.get('/comprobante/:ntrans',getTransaccionData);
+router.get('/prestamos/:cuenta',getMisPrestamos)
+router.get('/misDatos/:cui',getMyData)
 
 // PUT
 router.put('/deposito',deposito);

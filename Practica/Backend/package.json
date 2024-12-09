@@ -13,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "backend": "file:",
     "express": "^4.21.2"
   },
   "devDependencies": {

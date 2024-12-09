@@ -8,7 +8,7 @@
 	import { sidebarOpen } from '../stores/sidevar';
 	import ContentSeeUser from './subpages/ContentSeeUser.svelte';
 	onMount(() => {
-		console.log($user.id);
+		console.log($user.no_cuenta);
 		
 	});
 
